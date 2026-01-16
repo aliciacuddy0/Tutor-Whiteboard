@@ -1,3 +1,4 @@
+import Phase1Whiteboard from "../Phase1Whiteboard";
 import dynamic from "next/dynamic";
 import Script from "next/script";
 
