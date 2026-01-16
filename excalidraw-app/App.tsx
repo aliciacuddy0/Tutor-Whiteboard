@@ -1,5 +1,6 @@
 import {
-  Excalidraw,
+  import TutorWhiteboard from "./components/Phase1Whiteboard",
+import
   LiveCollaborationTrigger,
   TTDDialogTrigger,
   CaptureUpdateAction,
@@ -1206,7 +1207,7 @@ const ExcalidrawApp = () => {
   return (
     <TopErrorBoundary>
       <Provider store={appJotaiStore}>
-        <ExcalidrawWrapper />
+        <TutorWhiteboard />
       </Provider>
     </TopErrorBoundary>
   );
