@@ -1,0 +1,55 @@
+"use client";
+import React from "react";
+import { Excalidraw } from "@excalidraw/excalidraw";
+import "@excalidraw/excalidraw/index.css";
+
+const TutorWhiteboard: React.FC = () => {
+  const [layers, setLayers] = React.useState([
+    { id: "background", type: "locked", objects: [] },
+    { id: "tutor", type: "editable", objects: [] },
+    { id: "student", type: "editable", objects: [] },
+  ]);
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const role = urlParams.get("role"); // "tutor" or "student"
+  const activeLayer = role === "tutor" ? "tutor" : "student";
+
+  function addShape(shape: any) {
+    setLayers(prev =>
+      prev.map(layer =>
+        layer.id === activeLayer
+          ? { ...layer, objects: [...layer.objects, shape] }
+          : layer
+      )
+    );
+  }
+
+  function handlePDFUpload(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target?.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const imgSrc = e.target?.result;
+      if (!imgSrc) return;
+      setLayers(prev =>
+        prev.map(layer =>
+          layer.id === "background"
+            ? { ...layer, objects: [...layer.objects, { type: "image", src: imgSrc, x: 0, y: 0 }] }
+            : layer
+        )
+      );
+    };
+    reader.readAsDataURL(file);
+  }
+
+  return (
+    <div>
+      {role === "tutor" && (
+        <input type="file" accept="application/pdf,image/*" onChange={handlePDFUpload} />
+      )}
+      <Excalidraw />
+    </div>
+  );
+};
+
+export default TutorWhiteboard;
