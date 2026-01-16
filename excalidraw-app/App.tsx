@@ -1,5 +1,5 @@
 import {
-  import TutorWhiteboard from "./components/Phase1Whiteboard",
+  import Phase1Whiteboard from "./components/Phase1Whiteboard",
 import
   LiveCollaborationTrigger,
   TTDDialogTrigger,
