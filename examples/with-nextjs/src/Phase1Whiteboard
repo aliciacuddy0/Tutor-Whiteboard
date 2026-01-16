@@ -1,46 +1,39 @@
 "use client";
 
-import React, { useRef } from "react";
-import { Excalidraw, ExcalidrawImperativeAPI } from "@excalidraw/excalidraw";
+import { Excalidraw } from "@excalidraw/excalidraw";
 import "@excalidraw/excalidraw/index.css";
+import { useSearchParams } from "next/navigation";
 
-const Phase1Whiteboard: React.FC = () => {
-  const excalidrawRef = useRef<ExcalidrawImperativeAPI>(null);
+export default function Phase1Whiteboard() {
+  // Get ?mode=student or ?mode=tutor from URL
+  const searchParams = useSearchParams();
+  const mode = searchParams.get("mode"); // tutor | student
 
-  const params = new URLSearchParams(
-    typeof window !== "undefined" ? window.location.search : ""
-  );
-  const role = params.get("role") === "student" ? "student" : "tutor";
+  const isStudent = mode === "student";
 
   return (
-    <div style={{ height: "100vh" }}>
-      <Excalidraw
-        ref={excalidrawRef}
-        onChange={(elements, appState) => {
-          if (role === "student") {
-            // Students cannot delete or modify locked elements
-            const cleanedElements = elements.map(el => {
-              if (el.isLocked) return el;
-              return el;
-            });
+    <div style={{ height: "100vh", position: "relative" }}>
+      {/* Mode badge */}
+      <div
+        style={{
+          position: "absolute",
+          top: 12,
+          right: 12,
+          zIndex: 10,
+          background: isStudent ? "#333" : "#0b5",
+          color: "#fff",
+          padding: "6px 12px",
+          borderRadius: 6,
+          fontSize: 12,
+          fontWeight: 600,
+        }}
+      >
+        {isStudent ? "STUDENT VIEW (Read only)" : "TUTOR VIEW (Editable)"}
+      </div>
 
-            excalidrawRef.current?.updateScene({
-              elements: cleanedElements,
-            });
-          }
-        }}
-        UIOptions={{
-          canvasActions: {
-            loadScene: role === "tutor",
-            saveAsImage: role === "tutor",
-            saveToActiveFile: role === "tutor",
-            export: role === "tutor",
-          },
-        }}
-      />
+      {/* Excalidraw with viewModeEnabled for students */}
+      <Excalidraw viewModeEnabled={isStudent} />
     </div>
   );
-};
-
-export default Phase1Whiteboard;
+}
 
