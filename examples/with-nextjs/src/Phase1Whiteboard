@@ -1,17 +1,23 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Excalidraw } from "@excalidraw/excalidraw";
 import "@excalidraw/excalidraw/index.css";
 import { useSearchParams } from "next/navigation";
 
 export default function Phase1Whiteboard() {
-  // Get ?mode=student or ?mode=tutor from URL
   const searchParams = useSearchParams();
-  const mode = searchParams.get("mode"); // tutor | student
+  const [mode, setMode] = useState<string | null>(null);
+
+  // Wait until searchParams are ready
+  useEffect(() => {
+    setMode(searchParams.get("mode"));
+  }, [searchParams]);
 
   const isStudent = mode === "student";
-console.log("MODE:", mode, "isStudent:", isStudent);
 
+  // Log to browser console
+  console.log("Phase1Whiteboard mode:", mode, "isStudent:", isStudent);
 
   return (
     <div style={{ height: "100vh", position: "relative" }}>
@@ -33,9 +39,8 @@ console.log("MODE:", mode, "isStudent:", isStudent);
         {isStudent ? "STUDENT VIEW (Read only)" : "TUTOR VIEW (Editable)"}
       </div>
 
-      {/* Excalidraw with viewModeEnabled for students */}
+      {/* Excalidraw: locked if student */}
       <Excalidraw viewModeEnabled={isStudent} />
     </div>
   );
 }
-
