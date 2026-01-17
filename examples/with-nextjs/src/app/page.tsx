@@ -1,10 +1,7 @@
-import { Suspense } from "react";
-import Phase1Whiteboard from "../Phase1Whiteboard";
+"use client";
+
+import Phase1Whiteboard from "../Phase1Whiteboard"; 
 
 export default function Page() {
-  return (
-    <Suspense fallback={null}>
-      <Phase1Whiteboard />
-    </Suspense>
-  );
+  return <Phase1Whiteboard />;
 }
