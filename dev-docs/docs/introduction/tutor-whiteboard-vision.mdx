@@ -1,0 +1,96 @@
+---
+title: Tutor Whiteboard Vision
+---
+
+## Strategic advantage checklist
+
+| Feature | Market standard | Potential edge |
+| --- | --- | --- |
+| Permissions | View-only or edit-all | Layer-based locking (fixed background vs. student drawing layer). |
+| Maths tools | Static widgets/menus | Interactive tools (compass/ruler) that snap to grid lines. |
+| Pacing | Student can scroll anywhere | “Sync View” mode that forces students to see exactly what the tutor sees. |
+
+## Core positioning
+
+Most tutoring platforms eventually hit a paywall that feels steep for a side hustle. To win, the tool must be **super cheap** while still delivering practical value:
+
+1. **Zero-friction entry**: instant-link rooms with a permanent tutor “Home Room” link, plus student links that join without accounts.
+2. **Geometry snapping**: ruler and compass that snap to grid or draw perfect 60° angles in two clicks.
+3. **Freemium sweet spot**: keep all math tools free, but limit storage (e.g., charge $3–$5/month after five saved/exported boards).
+
+## Killer tutor features
+
+- **Student view lock**: tutor can work elsewhere while students are locked to a specific region or prompt.
+- **PDF import**: lock a PDF page as an immovable background so students can’t accidentally move it.
+
+## Pricing direction
+
+- **Pay-as-you-go**: 50p unlocks a premium room for 24 hours.
+- **Forever free solo tier**: keep 1-to-1 sessions free; charge for group classes or high-resolution recordings.
+
+## Permissions model (tutor vs. student)
+
+**Tutor can**
+
+- Draw
+- Type
+- Upload
+- Move/delete everything
+- Use all tools
+
+**Student can**
+
+- Draw
+- Type
+- Use ruler / protractor / compass
+- ❌ Cannot delete tutor content
+- ❌ Cannot move uploaded worksheets
+
+## Link model
+
+- Tutor edit link: `/edit/:id`
+- Student restricted link: `/student/:id`
+
+## Build approach
+
+You do not need to reinvent Excalidraw. A practical path:
+
+1. Fork Excalidraw (open source).
+2. Add role-based permissions and tool restrictions.
+3. Generate two links (`/edit/:id` and `/student/:id`).
+4. Read Excalidraw docs focusing on **Permissions** and **Collaboration**.
+
+## Near-term plan
+
+**Day 1–2**
+
+- Write permission rules.
+- Get tutor feedback on the restricted link.
+
+**Day 3**
+
+- Confirm: ruler + protractor first.
+
+**Day 4–7**
+
+- Explore fork feasibility.
+- Decide: no-code wrapper vs. dev help.
+
+## Hosting options
+
+**Option A (easiest for non-coders)**
+
+- Use StackBlitz or CodeSandbox.
+- Upload Excalidraw files.
+- Edit/test in-browser, no installation needed.
+
+**Option B (more permanent)**
+
+- Use Netlify or Vercel for free hosting.
+- One-click deploy → live URL.
+
+## Open questions
+
+- Have we achieved a digital compass with a natural mouse/stylus “pivot point”?
+- How will “Sync View” behave during collaboration?
+- What’s the minimal viable PDF import/locking experience?
