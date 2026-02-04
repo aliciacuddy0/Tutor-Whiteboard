@@ -1,6 +1,4 @@
 import {
-  import Phase1Whiteboard from "./components/Phase1Whiteboard",
-import
   LiveCollaborationTrigger,
   TTDDialogTrigger,
   CaptureUpdateAction,
