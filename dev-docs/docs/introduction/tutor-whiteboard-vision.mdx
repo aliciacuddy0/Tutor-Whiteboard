@@ -89,6 +89,24 @@ You do not need to reinvent Excalidraw. A practical path:
 - Use Netlify or Vercel for free hosting.
 - One-click deploy → live URL.
 
+## If Replit struggles to run
+
+If Replit is slow or fails to start, try these lightweight alternatives first:
+
+- **StackBlitz**: works well for quick previews without installing dependencies.
+- **CodeSandbox**: reliable for static doc previews and simple edits.
+
+If you still want to use Replit, consider:
+
+1. Opening only the `dev-docs` folder instead of the entire monorepo.
+2. Running just the docs site to reduce load:
+   ```bash
+   cd dev-docs
+   yarn install
+   yarn start
+   ```
+3. Disabling extra services or background processes in the Replit workspace.
+
 ## Open questions
 
 - Have we achieved a digital compass with a natural mouse/stylus “pivot point”?
