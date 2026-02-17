@@ -4,6 +4,7 @@ import {
   CaptureUpdateAction,
   reconcileElements,
   useEditorInterface,
+  Excalidraw,
 } from "@excalidraw/excalidraw";
 import { trackEvent } from "@excalidraw/excalidraw/analytics";
 import { getDefaultAppState } from "@excalidraw/excalidraw/appState";
@@ -1205,7 +1206,7 @@ const ExcalidrawApp = () => {
   return (
     <TopErrorBoundary>
       <Provider store={appJotaiStore}>
-        <TutorWhiteboard />
+        <ExcalidrawWrapper />
       </Provider>
     </TopErrorBoundary>
   );
