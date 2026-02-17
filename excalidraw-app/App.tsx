@@ -47,7 +47,11 @@ import {
   share,
   youtubeIcon,
 } from "@excalidraw/excalidraw/components/icons";
+
 import { isElementLink } from "@excalidraw/element";
+
+// Brand name override
+const BRAND_NAME = "Tutorbuddy";
 import {
   bumpElementVersions,
   restoreAppState,
