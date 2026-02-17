@@ -63,7 +63,19 @@ export const ExcalidrawLogo = ({
   return (
     <div className={`ExcalidrawLogo is-${size}`} style={style}>
       <LogoIcon />
-      {withText && <LogoText />}
+      {withText && (
+        <span
+          className="ExcalidrawLogo-text"
+          style={{
+            fontSize: "1.2rem",
+            fontWeight: "bold",
+            marginLeft: "0.5rem",
+            color: "var(--color-primary)",
+          }}
+        >
+          Tutorbuddy
+        </span>
+      )}
     </div>
   );
 };

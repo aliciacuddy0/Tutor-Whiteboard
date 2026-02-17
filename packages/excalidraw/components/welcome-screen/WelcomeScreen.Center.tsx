@@ -113,6 +113,9 @@ const Logo = ({ children }: { children?: React.ReactNode }) => {
   return (
     <div className="welcome-screen-center__logo excalifont welcome-screen-decor">
       {children || <ExcalidrawLogo withText />}
+      <p style={{ marginTop: "1rem", fontSize: "1.1rem" }}>
+        Your personal whiteboarding buddy for tutoring.
+      </p>
     </div>
   );
 };
