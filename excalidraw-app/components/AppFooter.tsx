@@ -19,6 +19,14 @@ export const AppFooter = React.memo(
         >
           {isVisualDebuggerEnabled() && <DebugFooter onChange={onChange} />}
           {!isExcalidrawPlusSignedUser && <EncryptedIcon />}
+          <span
+            style={{
+              fontWeight: 600,
+              letterSpacing: "0.02em",
+            }}
+          >
+            TutorBuddy
+          </span>
         </div>
       </Footer>
     );
